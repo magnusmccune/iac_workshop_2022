@@ -2,6 +2,8 @@
 
 This is the repo that I'm using to support my 2022 IaC Workshop at Microsoft.
 
+Hello to the October 24th Class
+
 # Tools
 
 ### Install & Update using WinGet
