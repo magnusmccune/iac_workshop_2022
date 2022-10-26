@@ -33,5 +33,5 @@ steps:
         --resource-group ${{parameters.rgName}} \
         --template-file $(Build.SourcesDirectory)/infra/basic.bicep \
         --parameters $(Build.SourcesDirectory)/infra/basic.parameters.json \
-        --parameters stgindex=${{parameters.stgIndex}} \
+        --parameters stgIndex=${{parameters.stgIndex}} \
         --parameters location=${{parameters.location}}
