@@ -4,16 +4,32 @@ parameters:
     default: 'canadacentral'
   - name: stgIndex
     type: string
+  - name: rgName
+    type: string
 
 steps:
-  - task: AzureCLI@2
-    inputs:
-      azureSubscription: 'm3demos_prd'
-      scriptType: 'batch'
-      scriptLocation: 'inlineScript'
-      inlineScript: |
-        az deployment sub create \
-          --location $(location) \
-          --template-file $(Build.SourcesDirectory)/basic.bicep \
-          --parameters $(Build.SourcesDirectory)/basic.parameters.json \
-          --parameters stgindex=${{parameters.stgIndex}}
+- task: AzureCLI@2
+  displayName: CreateResourceGroup
+  inputs:
+    azureSubscription: 'm3demos_prd'
+    scriptType: 'batch'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az group create \
+        --name ${{parameters.rgName}} \
+        --location $${{parameters.location}}
+
+- task: AzureCLI@2
+  condition: succeeded()
+  displayName: DeployToResourceGroup
+  inputs:
+    azureSubscription: 'm3demos_prd'
+    scriptType: 'batch'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az deployment group create \
+        --resource-group ${{parameters.rgName}} \
+        --location ${{parameters.location}} \
+        --template-file $(Build.SourcesDirectory)/basic.bicep \
+        --parameters $(Build.SourcesDirectory)/basic.parameters.json \
+        --parameters stgindex=${{parameters.stgIndex}}
