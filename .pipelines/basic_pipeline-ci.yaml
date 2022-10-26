@@ -1,3 +1,10 @@
+parameters:
+  - name: location
+    type: string
+    default: 'canadacentral'
+  - name: stgIndex
+    type: string
+
 steps:
   - task: AzureCLI@2
     inputs:
@@ -7,5 +14,6 @@ steps:
       inlineScript: |
         az deployment sub create \
           --location $(location) \
-          --template-file $(System.ArtifactsDirectory)/drop/demo1.bicep \
-          --parameters @$(System.ArtifactsDirectory)/drop/demo1.dev.parameters.json
+          --template-file $(Build.SourcesDirectory)/basic.bicep \
+          --parameters $(Build.SourcesDirectory)/basic.parameters.json \
+          --parameters stgindex=${{parameters.stgIndex}}
