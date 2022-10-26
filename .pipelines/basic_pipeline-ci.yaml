@@ -19,7 +19,7 @@ steps:
     inlineScript: |
       az group create \
         --name ${{parameters.rgName}} \
-        --location $${{parameters.location}}
+        --location ${{parameters.location}}
 
 - task: AzureCLI@2
   condition: succeeded()
