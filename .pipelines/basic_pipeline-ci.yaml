@@ -31,7 +31,7 @@ steps:
     inlineScript: |
       az deployment group create \
         --resource-group ${{parameters.rgName}} \
-        --location ${{parameters.location}} \
         --template-file $(Build.SourcesDirectory)/basic.bicep \
         --parameters $(Build.SourcesDirectory)/basic.parameters.json \
-        --parameters stgindex=${{parameters.stgIndex}}
+        --parameters stgindex=${{parameters.stgIndex}} \
+        --parameters location=${{parameters.location}}
