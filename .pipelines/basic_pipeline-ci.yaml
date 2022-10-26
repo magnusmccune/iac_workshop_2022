@@ -1,0 +1,11 @@
+steps:
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'm3demos_prd'
+      scriptType: 'batch'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        az deployment sub create \
+          --location $(location) \
+          --template-file $(System.ArtifactsDirectory)/drop/demo1.bicep \
+          --parameters @$(System.ArtifactsDirectory)/drop/demo1.dev.parameters.json
