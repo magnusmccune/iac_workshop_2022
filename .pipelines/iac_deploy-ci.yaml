@@ -119,6 +119,11 @@ stages:
             infra/demo1.dev.parameters.json
             infra/demo1.prd.parameters.json
             infra/modules/*
+            infra/modules/iam/*
+            infra/modules/iam/resource/*
+            infra/modules/iam/resourceGroup/*
+            infra/modules/iam/subscription/*
+            infra/modules/util/*
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
       
       - task: PublishBuildArtifacts@1
