@@ -1,0 +1,37 @@
+
+
+@description('Azure Key Vault Name.')
+param akvName string
+
+@description('Secret Name.')
+param secretName string
+
+@description('Secret Value')
+@secure()
+param secretValue string
+
+@description('Secret Expiry in days.')
+#disable-next-line secure-secrets-in-params   // defines the secret expiry period in days.  It is not a secret.
+param secretExpiryInDays int
+
+@description('Expiry Year.')
+param yearNow int = int(trim(utcNow(' yyyy ')))
+
+@description('Expiry Month.')
+param monthNow int = int(trim(utcNow(' M ')))
+
+@description('Expiry Day.')
+param dayNow int = int(trim(utcNow(' d ')))
+
+var expSeconds = (yearNow - 1970) * 31536000 + monthNow * 2628000 + dayNow * 86400 + secretExpiryInDays * 86400
+
+resource akvSecret 'Microsoft.KeyVault/vaults/secrets@2019-09-01' = {
+  name: '${akvName}/${secretName}'
+  properties: {
+    attributes: {
+      enabled: true
+      exp: expSeconds
+    }
+    value: secretValue
+  }
+}
