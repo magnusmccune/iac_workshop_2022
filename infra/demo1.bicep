@@ -75,7 +75,7 @@ var kvtName = toLower('${org}${project}${app}kvt1${envCode}')
 var stgName = toLower('${org}${project}${app}stg1${envCode}')
 var sqsName = toLower('${org}${project}${app}sqs1${envCode}')
 var adfName = toLower('${org}${project}${app}adf1${envCode}')
-var vmNameSeed = toLower('${org}${project}${app}vm')
+var vmNameSeed = toLower('${org}${app}vm')
 
 @description('Generated object used to create the AAD Admin in the SQL Server')
 var aadAdministrator = {
