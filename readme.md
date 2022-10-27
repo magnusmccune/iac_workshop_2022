@@ -2,9 +2,7 @@
 
 This is the repo that I'm using to support my 2022 IaC Workshop at Microsoft.
 
-Hello to the October 24th Class
-
-# Tools
+## Tools
 
 ### Install & Update using WinGet
 
@@ -26,3 +24,11 @@ code --install-extension ms-vscode.azurecli
 code --install-extension msazurermtools.azurerm-vscode-tools
 code --install-extension vscode-icons-team.vscode-icons
 ```
+
+## Future Enhancements
+
+1. Redesign the deployed infra to describe a fully functional and integrated environment
+   1. ADF using git and CICD
+   2. Function Apps, Web App & Logic Apps using SiteConfigs, Connectors & KeyVault References
+2. Describe the workshop delivery within the repo
+3. *stretch* include powerpoint and recordings
