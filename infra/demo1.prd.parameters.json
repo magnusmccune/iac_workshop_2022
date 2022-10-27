@@ -23,6 +23,18 @@
     "sqlUsername": {
       "value": "m3dSA"
     },
+    "aadAuthenticationOnly": {
+      "value": false
+    },
+    "aadLoginName": {
+      "value": "Magnus McCune"
+    },
+    "aadLoginObjectID": {
+      "value": "bb0dfbe7-df49-4d3c-9c05-28187c2302c5"
+    },
+    "aadLoginType": {
+      "value": "User"
+    },
     "vmConfig": {
       "value": {
         "vmCount": 2,
