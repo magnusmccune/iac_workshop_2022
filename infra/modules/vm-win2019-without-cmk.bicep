@@ -10,6 +10,9 @@ param vmSize string
 @description('Azure Availability Zone for VM.')
 param availabilityZone string
 
+@description('Key/Value pair of tags.')
+param tags object = {}
+
 // Credentials
 @description('Virtual Machine Username.')
 @secure()
@@ -26,13 +29,10 @@ param subnetId string
 @description('Boolean flag that enables Accelerated Networking.')
 param enableAcceleratedNetworking bool
 
-// Host Encryption
-@description('Boolean flag to enable encryption at host (double encryption).  This feature can not be used with Azure Disk Encryption.')
-param encryptionAtHost bool = true
-
 resource nic 'Microsoft.Network/networkInterfaces@2020-06-01' = {
     name: '${vmName}-nic'
     location: location
+    tags: tags
     properties: {
         enableAcceleratedNetworking: enableAcceleratedNetworking
         ipConfigurations: [
@@ -54,6 +54,7 @@ resource nic 'Microsoft.Network/networkInterfaces@2020-06-01' = {
 resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
     name: vmName
     location: location
+    tags: tags
     zones: [
         availabilityZone
     ]
@@ -100,9 +101,6 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
             computerName: vmName
             adminUsername: username
             adminPassword: password
-        }
-        securityProfile: {
-            encryptionAtHost: encryptionAtHost
         }
     }
 }
