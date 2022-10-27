@@ -15,14 +15,20 @@ parameters:
     default: canadacentral
   - name: devSubscriptionID
     type: string
+    default: eda4c741-e019-47be-94a2-a64127c900c2
   - name: prdSubscriptionID
     type: string
+    default: 64cad722-3e9f-46cb-b3b5-70689d59586a
 
 variables:
   - name: devServiceConnection
-    value: ~devServiceConnectionName~
+    value: m3demos_dev
   - name: prdServiceConnection
     value: m3demos_prd
+  - name: devSeedkeyvault
+    value: m3diacwshpinfrakvt1d
+  - name: prdSeedkeyvault
+    value: m3diacwshpinfrakvt1p
 
 
 stages:
@@ -60,7 +66,9 @@ stages:
             az deployment sub what-if \
               --location $(location) \
               --template-file $(Build.SourcesDirectory)/demo1.bicep \
-              --parameters @$(Build.SourcesDirectory)/demo1.dev.parameters.json
+              --parameters @$(Build.SourcesDirectory)/demo1.dev.parameters.json \
+              --parameters vmPassword='placeholder' \
+              --parameters sqlPassword= 'placeholder'
 
     - job: ValidateBicepCodePRD
       displayName: Validate Bicep Code for PRD
@@ -92,7 +100,9 @@ stages:
             az deployment sub what-if \
               --location $(location) \
               --template-file $(Build.SourcesDirectory)/demo1.bicep \
-              --parameters @$(Build.SourcesDirectory)/demo1.prd.parameters.json
+              --parameters @$(Build.SourcesDirectory)/demo1.prd.parameters.json \
+              --parameters vmPassword='placeholder' \
+              --parameters sqlPassword= 'placeholder'
 
     - job: BuildAndPublishArtifact
       displayName: Build & Publish Bicep Artifact
@@ -133,6 +143,14 @@ stages:
                   downloadType: 'single'
                   artifactName: 'drop'
                   downloadPath: '$(System.ArtifactsDirectory)'
+              
+              - task: AzureKeyVault@2
+                displayName: Get Keys from seed key vault
+                inputs:
+                  azureSubscription: ${{variables.prdServiceConnection}}
+                  KeyVaultName: '${{variables.devSeedKeyvault}}'
+                  SecretsFilter: '$(seedVMPassword), $(seedSQLPassword)'
+                  RunAsPreJob: true
   
               - task: AzureCLI@2
                 displayName: 'Deploy BICEP'
@@ -144,7 +162,9 @@ stages:
                     az deployment sub create \
                       --location $(location) \
                       --template-file $(System.ArtifactsDirectory)/drop/demo1.bicep \
-                      --parameters @$(System.ArtifactsDirectory)/drop/demo1.dev.parameters.json
+                      --parameters @$(System.ArtifactsDirectory)/drop/demo1.dev.parameters.json \
+                      --parameters vmPassword='$(seedVMPassword)' \
+                      --parameters sqlPassword='$(seedSQLPassword)'
 
   - stage: DeployToPRD
     dependsOn:
@@ -166,6 +186,15 @@ stages:
                   downloadType: 'single'
                   artifactName: 'drop'
                   downloadPath: '$(System.ArtifactsDirectory)'
+                  
+              
+              - task: AzureKeyVault@2
+                displayName: Get Keys from seed key vault
+                inputs:
+                  azureSubscription: ${{variables.prdServiceConnection}}
+                  KeyVaultName: '${{variables.prdSeedKeyvault}}'
+                  SecretsFilter: '$(seedVMPassword), $(seedSQLPassword)'
+                  RunAsPreJob: true
   
               - task: AzureCLI@2
                 displayName: 'Deploy BICEP'
@@ -177,4 +206,6 @@ stages:
                     az deployment sub create \
                       --location $(location) \
                       --template-file $(System.ArtifactsDirectory)/drop/demo1.bicep \
-                      --parameters @$(System.ArtifactsDirectory)/drop/demo1.prd.parameters.json
+                      --parameters @$(System.ArtifactsDirectory)/drop/demo1.prd.parameters.json \
+                      --parameters vmPassword='$(seedVMPassword)' \
+                      --parameters sqlPassword='$(seedSQLPassword)'
