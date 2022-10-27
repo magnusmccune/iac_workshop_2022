@@ -166,13 +166,12 @@ stages:
 
   - stage: DeployToPRD
     dependsOn:
-      Build_Validate
       DeployToDev
     condition: succeeded('DeployToDev')
     jobs:
       - deployment: DeployBICEP
         displayName: Deploy BICEP in PRD
-        environment: 'dev'
+        environment: 'prd'
         strategy:
           runOnce:
             deploy:
