@@ -164,7 +164,7 @@ stages:
                   scriptLocation: 'inlineScript'
                   inlineScript: |
                     az deployment sub create \
-                      --location $(location) \
+                      --location ${{parameters.location}} \
                       --template-file $(System.ArtifactsDirectory)/drop/demo1.bicep \
                       --parameters @$(System.ArtifactsDirectory)/drop/demo1.dev.parameters.json \
                       --parameters vmPassword='$(seedVMPassword)' \
@@ -207,7 +207,7 @@ stages:
                   scriptLocation: 'inlineScript'
                   inlineScript: |
                     az deployment sub create \
-                      --location $(location) \
+                      --location ${{parameters.location}} \
                       --template-file $(System.ArtifactsDirectory)/drop/demo1.bicep \
                       --parameters @$(System.ArtifactsDirectory)/drop/demo1.prd.parameters.json \
                       --parameters vmPassword='$(seedVMPassword)' \
