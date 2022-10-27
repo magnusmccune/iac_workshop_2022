@@ -42,7 +42,7 @@
         "enableAcceleratedNetworking": true,
         "subnetID": "/subscriptions/64cad722-3e9f-46cb-b3b5-70689d59586a/resourceGroups/M3D-IACWSHP-INFRA-PRD-RG-01/providers/Microsoft.Network/virtualNetworks/M3D-IACWSHP-INFRA-PRD-VNET-01/subnets/M3D-IACWSHP-PRD-APP1-SUBNET-01",
         "vmUsername": "azadmin",
-        "vmSize": "Standard_D2s_v5"
+        "vmSize": "Standard_D2s_v4"
       }
     }
   }
