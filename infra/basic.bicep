@@ -1,9 +1,9 @@
 // parameters
 param project string
 param location string = resourceGroup().location
-param stgSKU string = 'Standard_LRS'
-param stgKind string = 'StorageV2'
-param stgIndex string = '1'
+param stgSKU string
+param stgKind string
+param stgIndex string
 
 // variables
 var stgName = 'azm3d${project}stg${stgIndex}'
