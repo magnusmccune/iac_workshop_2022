@@ -8,8 +8,6 @@ trigger:
     - infra/*
 
 parameters:
-  - name: includeProduction
-    type: boolean
   - name: location
     type: string
     default: canadacentral
