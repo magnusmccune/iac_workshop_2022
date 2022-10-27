@@ -49,9 +49,11 @@ stages:
             csmFile: infra/demo1.bicep
             csmParametersFile: infra/demo1.dev.parameters.json
             overrideParameters: >
-              -location ${{parameters.location}}
+              -sqlPassword 'placeholder'
+              -vmPassword 'placeholder'
 
     - job: RunWhatIfDEV
+      dependsOn: ValidateBicepCodeDEV
       displayName: Run WhatIf in DEV
       steps:
       - task: AzureCLI@2
@@ -62,13 +64,14 @@ stages:
           scriptLocation: 'inlineScript'
           inlineScript: |
             az deployment sub what-if \
-              --location $(location) \
+              --location ${{parameters.location}} \
               --template-file $(Build.SourcesDirectory)/demo1.bicep \
               --parameters @$(Build.SourcesDirectory)/demo1.dev.parameters.json \
               --parameters vmPassword='placeholder' \
               --parameters sqlPassword= 'placeholder'
 
     - job: ValidateBicepCodePRD
+      dependsOn: RunWhatIfDEV
       displayName: Validate Bicep Code for PRD
       steps:
         - task: AzureResourceManagerTemplateDeployment@3
@@ -83,9 +86,11 @@ stages:
             csmFile: infra/demo1.bicep
             csmParametersFile: infra/demo1.prd.parameters.json
             overrideParameters: >
-              -parameter1 value1
+              -sqlPassword 'placeholder'
+              -vmPassword 'placeholder'
 
     - job: RunWhatIfPRD
+      dependsOn: ValidateBicepCodePRD
       displayName: Run WhatIf in PRD
       steps:
       - task: AzureCLI@2
@@ -96,13 +101,14 @@ stages:
           scriptLocation: 'inlineScript'
           inlineScript: |
             az deployment sub what-if \
-              --location $(location) \
+              --location ${{parameters.location}} \
               --template-file $(Build.SourcesDirectory)/demo1.bicep \
               --parameters @$(Build.SourcesDirectory)/demo1.prd.parameters.json \
               --parameters vmPassword='placeholder' \
               --parameters sqlPassword= 'placeholder'
 
     - job: BuildAndPublishArtifact
+      dependsOn: RunWhatIfPRD
       displayName: Build & Publish Bicep Artifact
       steps:
       - task: CopyFiles@2
