@@ -65,8 +65,8 @@ stages:
           inlineScript: |
             az deployment sub what-if \
               --location ${{parameters.location}} \
-              --template-file $(Build.SourcesDirectory)/demo1.bicep \
-              --parameters @$(Build.SourcesDirectory)/demo1.dev.parameters.json \
+              --template-file $(Build.SourcesDirectory)/infra/demo1.bicep \
+              --parameters @$(Build.SourcesDirectory)/infra/demo1.dev.parameters.json \
               --parameters vmPassword='placeholder' \
               --parameters sqlPassword= 'placeholder'
 
@@ -102,8 +102,8 @@ stages:
           inlineScript: |
             az deployment sub what-if \
               --location ${{parameters.location}} \
-              --template-file $(Build.SourcesDirectory)/demo1.bicep \
-              --parameters @$(Build.SourcesDirectory)/demo1.prd.parameters.json \
+              --template-file $(Build.SourcesDirectory)/infra/demo1.bicep \
+              --parameters @$(Build.SourcesDirectory)/infra/demo1.prd.parameters.json \
               --parameters vmPassword='placeholder' \
               --parameters sqlPassword= 'placeholder'
 
