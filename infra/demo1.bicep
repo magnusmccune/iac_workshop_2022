@@ -111,11 +111,12 @@ module identity 'modules/iam/user-assigned-identity.bicep' = {
 
 module keyvault 'modules/key-vault.bicep' = {
   scope: workloadRG
-  name: 'keyvault_deployment'
+  name: 'Deploy_Keyvault'
   params: {
-    tags: tags
     name: kvtName
     location: location
+    tags: tags
+    enabledForDeployment: true
   }
 }
 
