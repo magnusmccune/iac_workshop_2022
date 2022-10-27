@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "org": {
+      "value": "m3d"
+    },
+    "project": {
+      "value": "iacwshp"
+    },
+    "app": {
+      "value": "app1"
+    },
+    "env": {
+      "value": "dev"
+    },
+    "envCode": {
+      "value": "d"
+    },
+    "lzPESubnetID": {
+      "value": "/subscriptions/eda4c741-e019-47be-94a2-a64127c900c2/resourceGroups/M3D-IACWSHP-INFRA-DEV-RG-01/providers/Microsoft.Network/virtualNetworks/M3D-IACWSHP-INFRA-DEV-VNET-01/subnets/M3D-IACWSHP-DEV-PE-SUBNET-01"
+    },
+    "sqlUsername": {
+      "value": "m3dSA"
+    },
+    "aadAuthenticationOnly": {
+      "value": false
+    },
+    "aadLoginName": {
+      "value": "Magnus McCune"
+    },
+    "aadLoginObjectID": {
+      "value": "bb0dfbe7-df49-4d3c-9c05-28187c2302c5"
+    },
+    "aadLoginType": {
+      "value": "User"
+    },
+    "vmConfig": {
+      "value": {
+        "vmCount": 2,
+        "availabilityZone": "1",
+        "enableAcceleratedNetworking": false,
+        "subnetID": "/subscriptions/eda4c741-e019-47be-94a2-a64127c900c2/resourceGroups/M3D-IACWSHP-INFRA-DEV-RG-01/providers/Microsoft.Network/virtualNetworks/M3D-IACWSHP-INFRA-DEV-VNET-01/subnets/M3D-IACWSHP-DEV-APP1-SUBNET-01",
+        "vmUsername": "azadmin",
+        "vmSize": "Standard_B2ms"
+      }
+    }
+  }
+}

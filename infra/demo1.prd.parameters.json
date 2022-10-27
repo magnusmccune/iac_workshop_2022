@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "org": {
+      "value": "m3d"
+    },
+    "project": {
+      "value": "iacwshp"
+    },
+    "app": {
+      "value": "app1"
+    },
+    "env": {
+      "value": "prd"
+    },
+    "envCode": {
+      "value": "p"
+    },
+    "lzPESubnetID": {
+      "value": "/subscriptions/64cad722-3e9f-46cb-b3b5-70689d59586a/resourceGroups/M3D-IACWSHP-INFRA-PRD-RG-01/providers/Microsoft.Network/virtualNetworks/M3D-IACWSHP-INFRA-PRD-VNET-01/subnets/M3D-IACWSHP-PRD-PE-SUBNET-01"
+    },
+    "sqlUsername": {
+      "value": "m3dSA"
+    },
+    "vmConfig": {
+      "value": {
+        "vmCount": 2,
+        "availabilityZone": "1",
+        "enableAcceleratedNetworking": true,
+        "subnetID": "/subscriptions/64cad722-3e9f-46cb-b3b5-70689d59586a/resourceGroups/M3D-IACWSHP-INFRA-PRD-RG-01/providers/Microsoft.Network/virtualNetworks/M3D-IACWSHP-INFRA-PRD-VNET-01/subnets/M3D-IACWSHP-PRD-APP1-SUBNET-01",
+        "vmUsername": "azadmin",
+        "vmSize": "Standard_D2s_v5"
+      }
+    }
+  }
+}
