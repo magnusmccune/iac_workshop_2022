@@ -151,7 +151,7 @@ stages:
               - task: AzureKeyVault@2
                 displayName: Get Keys from seed key vault
                 inputs:
-                  azureSubscription: ${{variables.prdServiceConnection}}
+                  azureSubscription: ${{variables.devServiceConnection}}
                   KeyVaultName: '${{variables.devSeedKeyvault}}'
                   SecretsFilter: 'seedVMPassword, seedSQLPassword'
                   RunAsPreJob: true
