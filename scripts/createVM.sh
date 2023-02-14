@@ -1,9 +1,9 @@
 # Set Variables
 
 echo 'Setting Variables...'
-export RGNAME='M3DEMOS-IACWSHP-RG-01'
+export RGNAME='M3DEMOS-SBX-ALZ-WKSP-RG-02'
 export LOCATION='canadacentral'
-export VMNAME='m3diacwshputl1'
+export VMNAME='m3dwksputl1s'
 
 # Create Resource Group
 

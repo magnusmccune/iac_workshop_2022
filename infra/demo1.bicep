@@ -70,7 +70,7 @@ var tags = {
   AppName: app
 }
 
-var workloadRGName = toUpper('${org}-${project}-${app}-${env}-RG-01')
+var workloadRGName = toUpper('${org}-${env}-${project}-${app}-RG-01')
 var kvtName = toLower('${org}${project}${app}kvt1${envCode}')
 var stgName = toLower('${org}${project}${app}stg1${envCode}')
 var sqsName = toLower('${org}${project}${app}sqs1${envCode}')
