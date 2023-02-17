@@ -18,7 +18,7 @@
       "value": "d"
     },
     "lzPESubnetID": {
-      "value": "/subscriptions/eda4c741-e019-47be-94a2-a64127c900c2/resourceGroups/M3D-IACWSHP-INFRA-DEV-RG-01/providers/Microsoft.Network/virtualNetworks/M3D-IACWSHP-INFRA-DEV-VNET-01/subnets/M3D-IACWSHP-DEV-PE-SUBNET-01"
+      "value": "/subscriptions/d888619b-e5cd-4b3f-b0aa-b8accf442216/resourceGroups/M3DEMOS-PRD-MGMT-NET-RG-01/providers/Microsoft.Network/virtualNetworks/M3DEMOS-PRD-MGMT-VNET-01/subnets/M3DEMOS-WKSP-DEV-PE-SUBNET-01"
     },
     "sqlUsername": {
       "value": "m3dSA"
@@ -30,7 +30,7 @@
       "value": "Magnus McCune"
     },
     "aadLoginObjectID": {
-      "value": "bb0dfbe7-df49-4d3c-9c05-28187c2302c5"
+      "value": "cfd0bafc-66da-4321-8cdf-b79637e04ab2"
     },
     "aadLoginType": {
       "value": "User"
@@ -40,7 +40,7 @@
         "vmCount": 2,
         "availabilityZone": "1",
         "enableAcceleratedNetworking": false,
-        "subnetID": "/subscriptions/eda4c741-e019-47be-94a2-a64127c900c2/resourceGroups/M3D-IACWSHP-INFRA-DEV-RG-01/providers/Microsoft.Network/virtualNetworks/M3D-IACWSHP-INFRA-DEV-VNET-01/subnets/M3D-IACWSHP-DEV-APP1-SUBNET-01",
+        "subnetID": "/subscriptions/d888619b-e5cd-4b3f-b0aa-b8accf442216/resourceGroups/M3DEMOS-PRD-MGMT-NET-RG-01/providers/Microsoft.Network/virtualNetworks/M3DEMOS-PRD-MGMT-VNET-01/subnets/M3D-WKSP-DEV-APP1-SUBNET-01",
         "vmUsername": "azadmin",
         "vmSize": "Standard_B2ms"
       }
