@@ -24,9 +24,9 @@ variables:
   - name: prdServiceConnection
     value: m3demos_sub
   - name: devSeedkeyvault
-    value: m3diacwshpinfrakvt1d
+    value: m3dcorekvt1p
   - name: prdSeedkeyvault
-    value: m3diacwshpinfrakvt1p
+    value: m3dcorekvt1p
 
 
 stages:
