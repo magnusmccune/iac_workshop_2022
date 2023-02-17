@@ -13,16 +13,16 @@ parameters:
     default: canadacentral
   - name: devSubscriptionID
     type: string
-    default: eda4c741-e019-47be-94a2-a64127c900c2
+    default: d888619b-e5cd-4b3f-b0aa-b8accf442216
   - name: prdSubscriptionID
     type: string
-    default: 64cad722-3e9f-46cb-b3b5-70689d59586a
+    default: d888619b-e5cd-4b3f-b0aa-b8accf442216
 
 variables:
   - name: devServiceConnection
-    value: m3demos_dev
+    value: m3demos_sub
   - name: prdServiceConnection
-    value: m3demos_prd
+    value: m3demos_sub
   - name: devSeedkeyvault
     value: m3diacwshpinfrakvt1d
   - name: prdSeedkeyvault
