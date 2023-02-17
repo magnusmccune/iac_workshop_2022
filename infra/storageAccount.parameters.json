@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "envCode": {
+      "value": "d"
+    },
+    "project": {
+      "value": "project1"
+    },
+    "app": {
+      "value": "app1"
+    },
+    "org": {
+      "value": "m3d"
+    },
+    "location": {
+      "value": "canadacentral"
+    },
+    "stgSku": {
+      "value": "Standard_LRS"
+    },
+    "stgKind": {
+      "value": "StorageV2"
+    }
+  }
+}
